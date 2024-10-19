@@ -25,6 +25,14 @@ cd Random_Movies_Jellyfin
 ```makefile
 VITE_JELLYFIN_API_URL=http://your-jellyfin-url
 VITE_JELLYFIN_API_KEY=your-api-key
+VITE_JELLYFIN_LIBRARY_ID=your-library-id
+```
+
+by default the library ID = none so it takes all the movies from the server, otherwise change to the library ID
+
+to find library ID
+```bash
+https://URL-JELLYFIN/Items?api_key=API-JELLYFIN
 ```
 
 4. Build and Run the App Using Docker
