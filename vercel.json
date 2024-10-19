@@ -1,0 +1,12 @@
+{
+	"redirects": [
+		{
+			"source": "/jellyfin",
+			"destination": "https://movies.ce-dev.eu/"
+		},
+		{
+			"source": "/jellyseerr",
+			"destination": "https://jelly.ce-dev.eu/"
+		}
+	]
+}
