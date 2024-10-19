@@ -9,23 +9,38 @@
     let timeout: NodeJS.Timeout;
     const dispatch = createEventDispatcher();
 
+    // .env
     const apiUrl = import.meta.env.VITE_JELLYFIN_API_URL;
     const apiKey = import.meta.env.VITE_JELLYFIN_API_KEY;
+    const LibraryId = import.meta.env.VITE_JELLYFIN_LIBRARY_ID;
 
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                                 SELECT MOVIES                                                                    |
+//---------------------------------------------------------------------------------------------------------------------------------------------------
     onMount(async () => {
-        try {
+        if (LibraryId === "none") {
             const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&IncludeItemTypes=Movie&Recursive=true`);
             if (!response.ok) {
-                throw new Error(`Erreur lors de la récupération des données: ${response.statusText}`);
+                throw new Error(`Error : ${response.statusText}`);
             }
             const data = await response.json();
-            movies = data.Items;
-        } catch (err) {
-            error = (err as Error).message;
+            movies = data.Items; 
+        
+        } else {
+            const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
+            if (!response.ok) {
+                throw new Error(`Error : ${response.statusText}`);
+            }
+            const data = await response.json();
+            movies = data.Items; 
         }
     });
 
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                           SEARCH MOVIES                                                                          |
+//---------------------------------------------------------------------------------------------------------------------------------------------------
     function searchMovies() {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
@@ -33,10 +48,15 @@
         }, 300); 
     }
 
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                       DISPLAY TYPE SELECTION                                                                     |
+//---------------------------------------------------------------------------------------------------------------------------------------------------
     function changeDisplayType(newDisplayType: string) {
         displayType = newDisplayType;
     }
 </script>
+
 
 {#if error}
     <p>Erreur: {error}</p>

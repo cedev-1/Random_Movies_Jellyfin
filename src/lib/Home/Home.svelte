@@ -15,20 +15,34 @@
 
     const apiUrl = import.meta.env.VITE_JELLYFIN_API_URL;
     const apiKey = import.meta.env.VITE_JELLYFIN_API_KEY;
+    const LibraryId = import.meta.env.VITE_JELLYFIN_LIBRARY_ID;
 
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                                 SELECT MOVIES                                                                    |
+//---------------------------------------------------------------------------------------------------------------------------------------------------
     onMount(async () => {
-        try {
+        if (LibraryId === "none") {
             const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&IncludeItemTypes=Movie&Recursive=true`);
             if (!response.ok) {
-                throw new Error(`Erreur lors de la récupération des données: ${response.statusText}`);
+                throw new Error(`Error : ${response.statusText}`);
             }
             const data = await response.json();
             movies = data.Items; 
-        } catch (err) {
-            error = (err as Error).message;
+        } else {
+            const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
+            if (!response.ok) {
+                throw new Error(`Error : ${response.statusText}`);
+            }
+            const data = await response.json();
+            movies = data.Items; 
         }
     });
 
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                       RANDOM MOVIE SELECTION                                                                     |
+//---------------------------------------------------------------------------------------------------------------------------------------------------
     function selectRandomMovie() {
         if (movies.length > 0) {
             const randomIndex = Math.floor(Math.random() * movies.length);
@@ -37,12 +51,13 @@
     }
 </script>
 
+
 {#if error}
     <p class="text-red-500">Erreur: {error}</p>
 {:else}
     <div class="flex flex-col items-center gap-4 p-5">
-        <button class="hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-purple-800 to-blue-300 text-white" on:click={selectRandomMovie}>
-            Choisir un film aléatoire
+        <button  class="cursor-pointer bg-gradient-to-r from-blue-500 to-violet-500 rounded-full text-white font-semibold transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-violet-500 hover:ring-0 hover:ring-violet-800 hover:shadow-xl hover:shadow-violet-500 focus:ring-violet-300 focus:shadow-violet-400 px-5 py-2" on:click={selectRandomMovie}>
+            find a random movie
         </button>
         
         {#if selectedMovie}
@@ -63,3 +78,5 @@
         {/if}
     </div>
 {/if}
+
+
