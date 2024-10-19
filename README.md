@@ -65,3 +65,6 @@ npm run build
 npm run preview
 ```
 
+EXEMPLE
+![Example Screenshot](/EXEMPLE/Find.PNG)
+
