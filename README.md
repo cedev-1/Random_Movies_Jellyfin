@@ -52,10 +52,7 @@ docker-compose down
 /media
 ![Example find](/EXEMPLE/ALL.PNG)
 ![Example find](/EXEMPLE/2ALL.PNG)
-![Example find](/EXEMPLE/FIND.PNG)
-
-
-
+![FIND](/EXEMPLE/FIND.PNG)
 
 
 Running the App Locally (without Docker)
