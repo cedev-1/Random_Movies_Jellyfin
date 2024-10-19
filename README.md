@@ -27,9 +27,6 @@ VITE_JELLYFIN_API_URL=http://your-jellyfin-url
 VITE_JELLYFIN_API_KEY=your-api-key
 ```
 
-    VITE_JELLYFIN_API_URL: The base URL of your Jellyfin server (e.g., http://localhost:8096).
-    VITE_JELLYFIN_API_KEY: Your Jellyfin API key for authentication.
-
 4. Build and Run the App Using Docker
 
 Run the following command to build the Docker image and start the application:
