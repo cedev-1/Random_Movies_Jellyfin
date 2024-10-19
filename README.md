@@ -48,6 +48,10 @@ docker-compose down
 
 Running the App Locally (without Docker)
 
+EXEMPLE
+![Example Screenshot](/EXEMPLE/Find.PNG)
+
+
 If you'd prefer to run the app locally:
 1. Install Dependencies
 
@@ -65,6 +69,4 @@ npm run build
 npm run preview
 ```
 
-EXEMPLE
-![Example Screenshot](/EXEMPLE/Find.PNG)
 
