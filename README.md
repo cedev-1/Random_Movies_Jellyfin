@@ -2,6 +2,8 @@
 
 This is a simple web application to find and display a random movie from your Jellyfin server. The app is Dockerized for easy deployment and allows users to quickly discover random movies from their Jellyfin collection.
 
+![Example Screenshot](/EXEMPLE/RANDOM.PNG)
+
 Setup and Installation
 1. Prerequisites
 
@@ -47,10 +49,16 @@ To stop the app, run:
 docker-compose down
 ```
 
-Running the App Locally (without Docker)
+/media
+![Example find](/EXEMPLE/ALL.PNG)
+![Example find](/EXEMPLE/2ALL.PNG)
+![Example find](/EXEMPLE/FIND.PNG)
 
-EXEMPLE
-![Example Screenshot](/EXEMPLE/Find.PNG)
+
+
+
+
+Running the App Locally (without Docker)
 
 
 If you'd prefer to run the app locally:
@@ -69,5 +77,4 @@ OR to build the project for production, run:
 npm run build
 npm run preview
 ```
-
 
