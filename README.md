@@ -38,7 +38,8 @@ docker-compose up
 ```
 
 The app will be accessible at http://localhost:4173.
-6. Stop the Docker Containers
+
+5. Stop the Docker Containers
 
 To stop the app, run:
 
