@@ -1,17 +1,9 @@
-<script lang="ts">
+<script>
     import { onMount } from 'svelte';
 
-    interface Movie {
-        Id: number;
-        Name: string;
-        Overview: string;
-        ProductionYear: number;
-        RunTimeTicks: number;
-    }
-
-    let movies: Movie[] = [];
-    let error: string | null = null; 
-    let selectedMovie: Movie | null = null; 
+    let movies = [];
+    let error = null; 
+    let selectedMovie = null; 
 
     const apiUrl = import.meta.env.VITE_JELLYFIN_API_URL;
     const apiKey = import.meta.env.VITE_JELLYFIN_API_KEY;
@@ -23,42 +15,46 @@
 //                                                                 SELECT MOVIES                                                                    |
 //---------------------------------------------------------------------------------------------------------------------------------------------------
     onMount(async () => {
-        if (LibraryName == "none" && LibraryId !== "none") {
-            const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
-            if (!response.ok) {
-                throw new Error(`Error : ${response.statusText}`);
-            }
-            const data = await response.json();
-            movies = data.Items; 
-
-        } else if (LibraryName !== "none" && LibraryId === "none") {
-            const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}`);
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-            const data = await response.json();
-    
-            const library = data.Items.find((item: any) => item.Name === LibraryName);
-    
-            if (library) {
-                const LibraryId = library.Id;
-                const movieResponse = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
-                if (!movieResponse.ok) {
-                    throw new Error(`Error: ${movieResponse.statusText}`);
+        try {
+            if (LibraryName == "none" && LibraryId !== "none") {
+                const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
+                if (!response.ok) {
+                    throw new Error(`Error : ${response.statusText}`);
                 }
-                const movieData = await movieResponse.json();
-                movies = movieData.Items;
-            } else {
-                throw new Error(`Library with name ${LibraryName} not found`);
-            }
+                const data = await response.json();
+                movies = data.Items; 
 
-        } else if (LibraryId === "none" && LibraryName === "none") {
-            const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&IncludeItemTypes=Movie&Recursive=true`);
-            if (!response.ok) {
-                throw new Error(`Error : ${response.statusText}`);
+            } else if (LibraryName !== "none" && LibraryId === "none") {
+                const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                const data = await response.json();
+        
+                const library = data.Items.find(item => item.Name === LibraryName);
+        
+                if (library) {
+                    const LibraryId = library.Id;
+                    const movieResponse = await fetch(`${apiUrl}/Items?api_key=${apiKey}&ParentId=${LibraryId}&IncludeItemTypes=Movie&Recursive=true`);
+                    if (!movieResponse.ok) {
+                        throw new Error(`Error: ${movieResponse.statusText}`);
+                    }
+                    const movieData = await movieResponse.json();
+                    movies = movieData.Items;
+                } else {
+                    throw new Error(`Library with name ${LibraryName} not found`);
+                }
+
+            } else if (LibraryId === "none" && LibraryName === "none") {
+                const response = await fetch(`${apiUrl}/Items?api_key=${apiKey}&IncludeItemTypes=Movie&Recursive=true`);
+                if (!response.ok) {
+                    throw new Error(`Error : ${response.statusText}`);
+                }
+                const data = await response.json();
+                movies = data.Items; 
             }
-            const data = await response.json();
-            movies = data.Items; 
+        } catch (err) {
+            error = err.message;
         }
     });
 

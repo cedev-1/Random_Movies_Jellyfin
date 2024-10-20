@@ -1,12 +1,12 @@
-<script lang="ts">
+<script>
     import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
 
-    let movies: any[] = [];
-    let error: string | null = null;
-    let search: string = '';
-    let displayType: string = '3'; 
-    let timeout: NodeJS.Timeout;
+    let movies = [];
+    let error = null;
+    let search = '';
+    let displayType = '3'; 
+    let timeout;
     const dispatch = createEventDispatcher();
 
     // .env
@@ -74,7 +74,7 @@ onMount(async () => {
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                       DISPLAY TYPE SELECTION                                                                     |
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-    function changeDisplayType(newDisplayType: string) {
+    function changeDisplayType(newDisplayType) {
         displayType = newDisplayType;
     }
 </script>
