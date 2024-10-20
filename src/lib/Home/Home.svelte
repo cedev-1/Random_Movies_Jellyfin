@@ -38,7 +38,7 @@
             }
             const data = await response.json();
     
-            const library = data.Items.find(item => item.Name === LibraryName);
+            const library = data.Items.find((item: any) => item.Name === LibraryName);
     
             if (library) {
                 const LibraryId = library.Id;
@@ -93,7 +93,8 @@
                     <img 
                         src={`${apiUrl}/Items/${selectedMovie.Id}/Images/Primary?api_key=${apiKey}`} 
                         alt={selectedMovie.Name} 
-                        class="w-[400px] h-[600px] mt-2 rounded-lg transition" 
+                        class="mt-2 rounded-lg transition" 
+                        style="width: 100%; max-width: 400px; height: auto;"
                     />
                 </div>
                 
@@ -102,4 +103,22 @@
     </div>
 {/if}
 
+<style>
+    img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
 
+    @media (max-width: 1024px) {
+        img {
+            max-width: 300px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        img {
+            max-width: 200px;
+        }
+    }
+</style>
