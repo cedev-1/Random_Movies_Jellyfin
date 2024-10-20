@@ -29,17 +29,22 @@ VITE_JELLYFIN_LIBRARY_ID=none
 VITE_JELLYFIN_LIBRARY_NAME=none
 ```
 
-LibraryId = none ------
-                       |-----> all movies from the server
-LibraryName = none ----
+>LibraryId = none ------
+>                       |-----> all movies from the server
+>LibraryName = none ----
+>
+>LibraryId = your-library-id
+>                       |-----> all movies from specific library
+>
+>LibraryName = your-library-name
+>                       |-----> all movies from specific library 
 
-LibraryId = your-library-id
-                       |-----> all movies from specific library
 
-LibraryName = your-library-name
-                       |-----> all movies from specific library 
-
+s
 by default the library ID = none so it takes all the movies from the server, otherwise change to the library ID
+
+
+
 
 to find library ID
 ```bash
