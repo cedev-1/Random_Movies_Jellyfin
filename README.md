@@ -23,10 +23,21 @@ cd Random_Movies_Jellyfin
 3. Modify the .env File
 
 ```makefile
-VITE_JELLYFIN_API_URL=http://your-jellyfin-url
-VITE_JELLYFIN_API_KEY=your-api-key
-VITE_JELLYFIN_LIBRARY_ID=your-library-id
+VITE_JELLYFIN_API_URL=URL-JELLYFIN
+VITE_JELLYFIN_API_KEY=API-KEY
+VITE_JELLYFIN_LIBRARY_ID=none
+VITE_JELLYFIN_LIBRARY_NAME=none
 ```
+
+LibraryId = none ------
+                       |-----> all movies from the server
+LibraryName = none ----
+
+LibraryId = your-library-id
+                       |-----> all movies from specific library
+
+LibraryName = your-library-name
+                       |-----> all movies from specific library 
 
 by default the library ID = none so it takes all the movies from the server, otherwise change to the library ID
 
