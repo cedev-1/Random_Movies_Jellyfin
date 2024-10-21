@@ -8,7 +8,7 @@
 
 	setTimeout(() => {
 		isLoading = false;
-	}, 3000);
+	}, 1500);
 </script>
 
 {#if isLoading}
