@@ -102,7 +102,7 @@ onMount(async () => {
             {#each movies as movie (movie.Id)}
                 {#if movie.Name.toLowerCase().includes(search.toLowerCase())}
                     <div class="movie-item bg-transparent text-white rounded-lg shadow-md overflow-hidden p-4" style="flex: 1 1 calc({100 / displayType}% - 1rem); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; overflow: hidden; background-color: transparent; color: white; padding: 1rem; transition: transform 0.2s; border: 1px solid #898989; width: 100%; height: auto; {displayType === '1' ? 'max-width: 50%;' : ''}">
-                        <img src={`${apiUrl}/Items/${movie.Id}/Images/Primary?api_key=${apiKey}`} alt="{movie.Name}" class="w-full h-auto object-cover aspect-video" style="width: 200px; height: 300px;"/>
+                        <img src={`${apiUrl}/Items/${movie.Id}/Images/Primary?api_key=${apiKey}`} alt="{movie.Name}" class="w-full h-auto object-cover aspect-video" style="aspect-ratio: 1 / 1;"/>
                         {#if window.innerWidth > 640}
                             <h2 class="text-xl font-semibold mt-2 text-center" style="font-size: calc(1rem + 0.2vw);">{movie.Name}</h2>
                             <div class="flex justify-between items-center">
@@ -161,8 +161,7 @@ onMount(async () => {
     }
     img {
         border-radius: 0.5rem;
-        width: 200px;
-        height: 300px;
+        aspect-ratio: 16 / 9; 
     }
 
     @media (max-width: 1024px) {
@@ -188,8 +187,8 @@ onMount(async () => {
             display: none;
         }
         .movie-item img {
-            width: 200px;
-            height: 300px;
+            width: 100%;
+            height: 100%;
             object-cover: cover;
         }
         .movie-item {
