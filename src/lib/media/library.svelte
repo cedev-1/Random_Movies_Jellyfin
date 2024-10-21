@@ -86,7 +86,7 @@ onMount(async () => {
     <div class="movies-grid">
         
         <div class="search-bar">
-            <input type="text" bind:value={search} on:input={searchMovies} placeholder="Rechercher un film" style="color: #333; font-size: calc(1rem + 0.5vw);">
+            <input type="text" bind:value={search} on:input={searchMovies} placeholder="Find Movie" style="color: #333; font-size: calc(1rem + 0.5vw);">
         </div>
         
         <div class="display-type-selector">
