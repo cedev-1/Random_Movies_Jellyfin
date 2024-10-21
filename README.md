@@ -36,7 +36,7 @@ VITE_JELLYFIN_LIBRARY_NAME=none
 >LibraryName = your-library-name -----> **all movies from specific library**
 
 
-by default the library ID = none so it takes all the movies from the server, otherwise change to the library ID
+by default the library ID = none so it takes all the movies from the server, otherwise change to the library ID or name
 
 
 
